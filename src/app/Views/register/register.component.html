@@ -1,0 +1,73 @@
+<div>
+    <div class="container-position">
+        <div class="card border-info mb-9" style="max-width: 40rem;">
+            <div class="card-header text-center">
+                <h5>Inscription</h5>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="register(formRegister)" [formGroup]="formRegister">
+                    <div *ngIf="etape==false">
+                        <div class="form-group row" [ngClass]="displayFieldCss('Email')">
+                            <h5 class="col-sm-3 col-form-label">Email</h5>
+                            <div class="col-sm-6">
+                                <input type="text" formControlName="Email" class="form-control" id="Email">
+                            </div>
+                            <app-field-error [displayError]="isFieldValid('Email')" *ngIf="Email?.errors?.required" errorMsg="Champ obligatoire">
+                            </app-field-error>
+                            <app-field-error [displayError]="isFieldValid('Email')" *ngIf="Email?.errors?.email" errorMsg="Format Invalid">
+                            </app-field-error>
+                        </div>
+                        <div class="form-group row" [ngClass]="displayFieldCss('Password')">
+                            <h5 class="col-sm-3 col-form-label">Mot de passe</h5>
+                            <div class="col-sm-6">
+                                <input formControlName="Password" class="form-control" id="Password" matInput [type]="hide ? 'password' : 'text'">
+                                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            </div>
+                            <app-field-error [displayError]="isFieldValid('Password')" *ngIf="Password?.errors?.required" errorMsg="Champ obligatoire">
+                            </app-field-error>
+                            <app-field-error [displayError]="isFieldValid('Password')" *ngIf="Password?.errors?.minlength" errorMsg="Minimum 8 caractères">
+                            </app-field-error>
+                        </div>
+                        <div class="form-group  text-center">
+                            <button type="button" class="btn btn-info" [disabled]="!formRegister.valid" (click)="next()">Connexion</button>
+                        </div>
+                    </div>
+                    <div *ngIf="etape==true">
+                        <div (scroll)="onElementScroll($event)" id="th-infinite-scroll-tracker" style="overflow-y:scroll; height: 250px;" scrollTracker>
+                            <p>Ex consequat commodo adipisicing exercitation aute excepteur occaecat ullamco duis aliqua id magna ullamco eu. Do aute ipsum ipsum ullamco cillum consectetur ut et aute consectetur labore. Fugiat laborum incididunt tempor eu
+                                consequat enim dolore proident. Qui laborum do non excepteur nulla magna eiusmod consectetur in. Aliqua et aliqua officia quis et incididunt voluptate non anim reprehenderit adipisicing dolore ut consequat deserunt mollit
+                                dolore. Aliquip nulla enim veniam non fugiat id cupidatat nulla elit cupidatat commodo velit ut eiusmod cupidatat elit dolore. Item 2 Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum
+                                consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex consectetur mollit voluptate est in duis laboris ad sit ipsum anim Lorem. Incididunt veniam velit elit elit veniam Lorem aliqua quis ullamco
+                                deserunt sit enim elit aliqua esse irure. Laborum nisi sit est tempor laborum mollit labore officia laborum excepteur commodo non commodo dolor excepteur commodo. Ipsum fugiat ex est consectetur ipsum commodo tempor sunt
+                                in proident. Item 3 Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor
+                                mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur. Item 4 Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident
+                                occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.
+                            </p>
+                        </div>
+                        <div class="spacing-top spacing-left">
+                            <div *ngIf="visibilitie==false" class="row text-muted">
+                                <input type="checkbox" disabled>
+                                <h6>J'accepte</h6>
+                            </div>
+                            <div *ngIf="visibilitie==true" class="row">
+                                <input type="checkbox" id="reglement" (click)="checked()">
+                                <h6>J'accepte</h6>
+                            </div>
+                        </div>
+                        <div class="card-footer row">
+                            <div class="spacing-right">
+                                <button type="button" class="btn btn-info" (click)="previous()" *ngIf="etape==true"> << Précédent</button>
+                            </div>
+                            <div>
+                                <button *ngIf="reglement==false" class="btn btn-info" disabled>Valider</button>
+                                <button *ngIf="reglement==true" class="btn btn-info">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
