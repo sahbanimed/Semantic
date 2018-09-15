@@ -56,6 +56,7 @@ export class RegisterComponent implements OnInit {
 
   previous(){
     this.etape=false;
+    this.reglement=false;
   }
 
   next(){
